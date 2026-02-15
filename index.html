@@ -958,14 +958,18 @@ document.getElementById("btnSaveSettings2")?.addEventListener("click", saveSetti
   const d = new Date(e.date);
   return d.toLocaleDateString("nl-BE");
 }
-  function entrySubtitle(e){
-if(e.type==="Recup") return `RECUP - gaat van overuren af (${formatHM(e.netMin||0)})`;
-  return `WERK ${e.start || "-"}-${e.end || "-"} • netto ${formatHM(e.netMin||0)} • pauze ${e.pauseMin||0}m`;
-}
-  function entryChip(e){
-    if(e.type==="Recup") return "7:30";
-    return formatHM(e.netMin||0);
+function entrySubtitle(e){
+
+  if(e.type==="Recup"){
+    return `RECUP<br>
+gaat van overuren af (${formatHM(e.netMin||0)})`;
   }
+
+  return `WERK ${e.start || "-"}-${e.end || "-"}<br>
+netto ${formatHM(e.netMin||0)}<br>
+pauze ${e.pauseMin||0} min`;
+}
+
   function renderHistory(){
     const list = state.entries
       .filter(e=>!e.deletedAt)
