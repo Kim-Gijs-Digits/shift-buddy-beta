@@ -410,7 +410,7 @@
         </div>
 
         <div class="miniCard" style="margin-top:12px;">
-          <div class="k">Laatste entry</div>
+          <div class="k">Laatste prestatie</div>
           <div id="lastEntry" class="muted" style="font-weight:950; margin-top:6px;">-</div>
         </div>
  <div class="miniCard" style="margin-top:12px;">
@@ -431,7 +431,7 @@
     <button class="btnSmall" id="btnAddManual">+ Handmatig</button>
   </div>
 </div>
-        <div class="muted">Tip!!! Vergeten uit te tikken?<br>Voeg manueel toe!!!</div>
+        <div class="muted">Tip!!! Vergeten uit te tikken?<br>Voeg handmatig toe!!!</div>
         <div class="list" id="historyList"></div>
       </div>
     </div>
@@ -874,8 +874,8 @@ document.getElementById("btnSaveSettings2")?.addEventListener("click", saveSetti
     if((entry?.type||"Werk")==="Recup"){
       mStart.value=""; mEnd.value=""; mPause.value=0;
     }else{
-      mStart.value = entry?.start || "08:00";
-      mEnd.value   = entry?.end   || "15:30";
+      mStart.value = entry?.start || "06:00";
+      mEnd.value   = entry?.end   || "14:00";
       mPause.value = entry?.pauseMin ?? 30;
     }
 
