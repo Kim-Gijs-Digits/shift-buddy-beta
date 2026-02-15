@@ -960,13 +960,13 @@ const META_KEY  = "shiftBuddy_beta_meta_v1";
   });
 
   function entryTitle(e){
-    if(e.type==="Recup") return `${e.date} - RECUP`;
-    return `${e.date} - ${(e.start||"-")}-${(e.end||"-")}`;
-  }
+  const d = new Date(e.date);
+  return d.toLocaleDateString("nl-BE");
+}
   function entrySubtitle(e){
-    if(e.type==="Recup") return `Recup - gaat van overuren af (7:30)`;
-    return `Werk - netto ${formatHM(e.netMin||0)} - pauze ${e.pauseMin||0} min`;
-  }
+if(e.type==="Recup") return `RECUP - gaat van overuren af (${formatHM(e.netMin||0)})`;
+  return `WERK ${e.start || "-"}-${e.end || "-"} • netto ${formatHM(e.netMin||0)} • pauze ${e.pauseMin||0}m`;
+}
   function entryChip(e){
     if(e.type==="Recup") return "7:30";
     return formatHM(e.netMin||0);
