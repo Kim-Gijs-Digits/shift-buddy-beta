@@ -484,6 +484,17 @@
 <label for="pauseMin">Standaard pauze (min)</label>
 <input id="pauseMin" type="number" min="0" step="5" value="30" />
 
+<div class="hr"></div>
+
+<div class="h2Row">
+  <div>
+    <div class="muted" style="font-weight:950;">Norm per dag</div>
+    <div class="muted2">Voorbeeld: 7:30 = 450 min</div>
+  </div>
+</div>
+
+<label for="normDayInput">Norm dag (u:min)</label>
+<input id="normDayInput" type="text" value="7:30" placeholder="bv 7:30" />
         <div class="hr"></div>
 
         <div class="h2Row">
@@ -603,6 +614,7 @@ const META_KEY  = "shiftBuddy_beta_meta_v1";
   const elTimer         = document.getElementById("timer");
   const elStatus        = document.getElementById("status");
   const elPauseMin      = document.getElementById("pauseMin");
+const elNormDayInput   = document.getElementById("normDayInput");
 
   const elTodayWork     = document.getElementById("todayWork");
   const elWeekWork      = document.getElementById("weekWork");
@@ -1054,19 +1066,29 @@ if(e.type==="Recup") return `RECUP - gaat van overuren af (${formatHM(e.netMin||
 }
 
   function renderSettings(){
-    elStartSaldoInput.value = formatHM(state.settings.startSaldoMin || 0);
-  }
+  elStartSaldoInput.value = formatHM(state.settings.startSaldoMin || 0);
+  elNormDayInput.value = formatHM(state.settings.normDayMin ?? NORM_MIN);
+}
   function saveSettings(){
-    const mins = parseHM(elStartSaldoInput.value);
-    if(mins==null){
-      showToast("Start saldo moet in formaat u:min zijn, bv 60:00");
-      return;
-    }
-    state.settings.startSaldoMin = mins;
-    saveState();
-    renderAll();
-    showToast("Instellingen opgeslagen ");
+  const mins = parseHM(elStartSaldoInput.value);
+  if(mins==null){
+    showToast("Start saldo moet in formaat u:min zijn, bv 60:00");
+    return;
   }
+
+  const norm = parseHM(elNormDayInput.value);
+  if(norm==null){
+    showToast("Norm dag moet in formaat u:min zijn, bv 7:30");
+    return;
+  }
+
+  state.settings.startSaldoMin = mins;
+  state.settings.normDayMin = norm;
+
+  saveState();
+  renderAll();
+  showToast("Instellingen opgeslagen");
+}
 
   function renderOnlineBadge(){
     const online = navigator.onLine;
