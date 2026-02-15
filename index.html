@@ -158,15 +158,12 @@
       color:var(--muted);
     }
 
-    .grid3{
-      display:grid;
-     grid-template-columns: repeat(2, 1fr);
-      gap:12px;
-      margin-top:14px;
-    }
-    @media (min-width:1040px){
-      .grid3{grid-template-columns: repeat(3, minmax(0,1fr));}
-    }
+.grid3{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+  margin-top:14px;
+}
     .miniCard{
       border:1px solid var(--line);
       background: rgba(255,255,255,.05);
@@ -175,8 +172,8 @@
       box-shadow: 0 10px 22px rgba(0,0,0,.18);
     }
     .miniCard .k{color:var(--muted); font-weight:900; margin-bottom:6px}
-    .miniCard .v{font-size:54px; font-weight:950; letter-spacing:.5px; line-height:1}
-    .miniCard .v.sm{font-size:40px}
+    .miniCard .v{font-size:42px; font-weight:950; letter-spacing:.5px; line-height:1}
+    .miniCard .v.sm{font-size:36px}
 
     .list{margin-top:12px}
     .entry{
