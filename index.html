@@ -384,6 +384,11 @@
 .saldoSub span{
   opacity:0.9;
 }
+.noteLine{
+  display:block;
+  margin-top:6px;
+  opacity:.9;
+}
 </style>
 </head>
 
@@ -599,7 +604,11 @@
             <input id="mPause" type="number" min="0" step="5" value="30"/>
           </div>
         </div>
+<div class="sp"></div>
 
+<label for="mNote">Opmerking (optioneel)</label>
+<textarea id="mNote" rows="3"
+placeholder="bv. Garage na rit, file, wachten op klant..."></textarea>
         
         <div class="modalActions">
           <button class="btnGhost" id="btnDeleteInModal" style="display:none;">Verwijderen</button>
@@ -690,7 +699,8 @@ const elNormDayInput   = document.getElementById("normDayInput");
   const mType           = document.getElementById("mType");
   const mStart          = document.getElementById("mStart");
   const mEnd            = document.getElementById("mEnd");
-  const mPause          = document.getElementById("mPause");
+  const mPause         = document.getElementById("mPause");
+  const mNote           = document.getElementById("mNote");
 
   let editingId = null;
   let interval = null;
@@ -912,7 +922,7 @@ document.getElementById("btnSaveSettings2")?.addEventListener("click", saveSetti
       mEnd.value   = entry?.end   || "14:00";
       mPause.value = entry?.pauseMin ?? 30;
     }
-
+mNote.value = entry?.note || "";
     modalBack.style.display = "flex";
   }
   function closeModal(){ modalBack.style.display = "none"; editingId = null; }
@@ -949,12 +959,14 @@ document.getElementById("btnSaveSettings2")?.addEventListener("click", saveSetti
       };
     }else{
       state.entries.unshift({
-        id: uid(), date, type,
-        start: type==="Recup" ? null : start,
-        end: type==="Recup" ? null : end,
-        pauseMin: type==="Recup" ? 0 : pauseMin,
-        netMin, createdAt: Date.now()
-      });
+  id: uid(), date, type,
+  start: type==="Recup" ? null : start,
+  end: type==="Recup" ? null : end,
+  pauseMin: type==="Recup" ? 0 : pauseMin,
+  netMin,
+  note: (mNote.value || "").trim(),
+  createdAt: Date.now()
+});
     }
 
     saveState();
@@ -987,17 +999,18 @@ document.getElementById("btnSaveSettings2")?.addEventListener("click", saveSetti
   return d.toLocaleDateString("nl-BE");
 }
 function entrySubtitle(e){
+  const noteLine = e.note ? `<br><br><span class="noteLine">📝 ${e.note}</span>` : "";
+
   if(e.type==="Recup"){
     return `RECUP<br>
-gaat van overuren af (${formatHM(e.netMin||0)})`;
+gaat van overuren af (${formatHM(e.netMin||0)})${noteLine}`;
   }
 
   return `WERK<br>
 ${e.start || "-"}-${e.end || "-"}<br>
 Netto ${formatHM(e.netMin||0)}<br>
-Pauze ${e.pauseMin||0} Min`;
+Pauze ${e.pauseMin||0} Min${noteLine}`;
 }
-
 function entryChip(e){
   return formatHM(e.netMin || 0);
 }
