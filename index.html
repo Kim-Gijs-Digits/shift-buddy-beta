@@ -1130,7 +1130,20 @@ function entryChip(e){
     elTodayWork.textContent = formatHM(todayNet);
     elWeekWork.textContent = formatHM(weekNet);
 if (elOvertimeSaldo) {
-  elOvertimeSaldo.textContent = formatHM(ot);
+
+  const normDay = state.settings.normDayMin ?? NORM_MIN;
+
+  const totalMin = ot;
+  const totalDays = normDay > 0 ? (totalMin / normDay) : 0;
+
+  const daysRounded = totalDays.toFixed(2);
+
+  elOvertimeSaldo.innerHTML = `
+    ${formatHM(totalMin)} U<br>
+    = ${totalMin} Min<br>
+    = ${daysRounded} Dag
+  `;
+
   setSaldoColor(elOvertimeSaldo, ot);
 }
 
@@ -1295,6 +1308,19 @@ if ('serviceWorker' in navigator) {
   <div id="toast" class="toast"></div>
 
   <!-- Confirm Modal -->
+  <div id="appModalOverlay" class="appModalOverlay">
+    <div class="appModal" role="dialog" aria-modal="true" aria-labelledby="appModalTitle">
+      <div class="appModalHeader" id="appModalTitle">Bevestigen</div>
+      <div class="appModalBody" id="appModalBody">Ben je zeker?</div>
+      <div class="appModalActions">
+        <button id="appModalCancel" class="btnGhost" type="button">Annuleren</button>
+        <button id="appModalOk" class="btnDanger" type="button">OK</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
   <div id="appModalOverlay" class="appModalOverlay">
     <div class="appModal" role="dialog" aria-modal="true" aria-labelledby="appModalTitle">
       <div class="appModalHeader" id="appModalTitle">Bevestigen</div>
