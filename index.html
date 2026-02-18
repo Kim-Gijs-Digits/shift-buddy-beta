@@ -955,7 +955,8 @@ mNote.value = entry?.note || "";
         start: type==="Recup" ? null : start,
         end: type==="Recup" ? null : end,
         pauseMin: type==="Recup" ? 0 : pauseMin,
-        netMin
+        netMin,
+        note: (mNote.value || "").trim()
       };
     }else{
       state.entries.unshift({
