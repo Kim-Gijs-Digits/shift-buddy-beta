@@ -363,6 +363,27 @@
   border-radius: 14px;
   font-weight: 900;
 }
+/* bestaande css hier ... */
+
+.saldoMain{
+  font-size:42px;
+  font-weight:900;
+}
+
+.saldoMain .unit{
+  font-size:22px;
+  font-weight:600;
+}
+
+.saldoSub{
+  font-family:monospace;
+  font-size:18px;
+  margin-top:6px;
+}
+
+.saldoSub span{
+  opacity:0.9;
+}
 </style>
 </head>
 
@@ -1139,11 +1160,14 @@ if (elOvertimeSaldo) {
   const daysRounded = totalDays.toFixed(2);
 
   elOvertimeSaldo.innerHTML = `
-    ${formatHM(totalMin)} U<br>
-    = ${totalMin} Min<br>
-    = ${daysRounded} Dag
-  `;
-
+  <div class="saldoMain">
+    ${formatHM(totalMin)} <span class="unit">U</span>
+  </div>
+  <div class="saldoSub">
+    = ${totalMin} <span>min</span><br>
+    = ${daysRounded} <span>dag</span>
+  </div>
+`;
   setSaldoColor(elOvertimeSaldo, ot);
 }
 
