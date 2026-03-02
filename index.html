@@ -1289,6 +1289,13 @@ window.SHIFTTAP_STORE_KEY = STORE_KEY;
 const NORM_MIN  = 0;
 const RECUP_MIN = 0;
 
+function isSetupDone(){
+  return localStorage.getItem("setupDone") === "1";
+}
+function markSetupDone(){
+  localStorage.setItem("setupDone", "1");
+}
+
 // =========================
 // Cloud sync (Google login) via Firebase
 // Setup (phone-friendly):
@@ -3614,6 +3621,12 @@ window.addEventListener("offline", renderOnlineBadge);
    ========================= */
 
 async function init(){
+
+  if(!isSetupDone()){
+    console.log("SETUP NODIG");
+    return; // belangrijk: stopt de normale init
+  }
+  
   const savedLang = localStorage.getItem("lang");
   currentLang = savedLang || state?.settings?.lang || "nl";
 
@@ -3655,6 +3668,12 @@ setStatus(
     : (state.timer.accMs > 0 ? "paused" : "stopped")
 );
 }
+
+document.getElementById("btnTestSetup")?.addEventListener("click", () => {
+  markSetupDone();
+  location.reload();
+});
+
 
 init();
 })();
@@ -3725,6 +3744,9 @@ init();
 <script src="jspdf.umd.min.js"></script>
 <script src="pdf-export.js"></script>
 
+<button id="btnTestSetup" style="position:fixed;bottom:10px;right:10px;z-index:9999;">
+  TEST Setup Done
+</button>
 
 </body>
 </html>
