@@ -1274,20 +1274,19 @@ input::-webkit-calendar-picker-indicator{ filter: invert(1); }
 <script>
 (() => {
 
-alert("SCRIPT START");
 
 window.onerror = function(message, source, lineno, colno, error){
   alert("JS fout:\n" + message + "\nLijn: " + lineno + ":" + colno);
   return false;
 };
-alert("SHIFT-TAP SCRIPT LOADED: " + (typeof APP_VERSION !== "undefined" ? APP_VERSION : "no version"));
+
   /* =========================
      ShiftTap + + + setuppage
      ========================= */
   const APP_ID = "shifttap";
 const APP_CHANNEL = "stable_met_gmail_pdf_setuppagev1";
 const APP_VERSION = "2.0.3";
-document.getElementById("appVersionText")?.textContent = "v" + APP_VERSION;
+
 
 
 const STORE_KEY = `${APP_ID}_state_${APP_CHANNEL}`;
