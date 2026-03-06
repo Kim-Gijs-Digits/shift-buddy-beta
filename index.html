@@ -2017,14 +2017,7 @@ function applyLang(){
     el.setAttribute("aria-label", t(key));
   });
 
-// taal label + custom taalkeuze
-function getLangName(code){
-  return code === "nl" ? "Nederlands"
-    : code === "en" ? "English"
-    : code === "fr" ? "Français"
-    : code === "de" ? "Deutsch"
-    : code;
-}
+
 
   function updateLangLabel(){
     const lbl = document.getElementById("langCurrentLabel");
@@ -2426,7 +2419,9 @@ verrekenModal?.addEventListener("click", (e) => {
 function getLangName(code){
   if(code === "nl") return "Nederlands";
   if(code === "en") return "English";
-  return "Français";
+  if(code === "fr") return "Français";
+  if(code === "de") return "Deutsch";
+  return code;
 }
 
 function setLang(code){
