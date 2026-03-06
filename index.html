@@ -2964,8 +2964,14 @@ btnCalNext?.addEventListener("click", ()=>{
   
   const dmy  = d => `${pad2(d.getDate())}/${pad2(d.getMonth()+1)}/${d.getFullYear()}`;
   function calLocale(){
-    return currentLang==="fr" ? "fr-FR" : currentLang==="en" ? "en-GB" : "nl-BE";
-  }
+  return currentLang==="fr" ? "fr-FR"
+    : currentLang==="en" ? "en-GB"
+    : currentLang==="de" ? "de-DE"
+    : currentLang==="pl" ? "pl-PL"
+    : currentLang==="es" ? "es-ES"
+    : currentLang==="hu" ? "hu-HU"
+    : "nl-BE";
+}
   
 function escapeHtml(str){
   if(!str) return "";
@@ -2996,11 +3002,15 @@ function updateLegendLetters(){
 }
 
   function dayHeaders(){
-    // Maandag eerst
-    if(currentLang==="fr") return ["L","M","M","J","V","S","D"];
-    if(currentLang==="en") return ["M","T","W","T","F","S","S"];
-    return ["M","D","W","D","V","Z","Z"];
-  }
+  // Maandag eerst
+  if(currentLang==="fr") return ["L","M","M","J","V","S","D"];
+  if(currentLang==="en") return ["M","T","W","T","F","S","S"];
+  if(currentLang==="de") return ["M","D","M","D","F","S","S"];
+  if(currentLang==="pl") return ["P","W","Ś","C","P","S","N"];
+  if(currentLang==="es") return ["L","M","X","J","V","S","D"];
+  if(currentLang==="hu") return ["H","K","S","C","P","S","V"];
+  return ["M","D","W","D","V","Z","Z"]; // Nederlands
+}
 
   function entryForDate(dateStr){
     // 1 entry per datum: neem de “laatste” (createdAt) als er toch meerdere zouden zijn
@@ -3700,7 +3710,14 @@ function hmFromMinutes(mins){
      ========================= */
   function entryTitle(e){
     const d = new Date(e.date);
-    const loc = currentLang==="fr" ? "fr-FR" : currentLang==="en" ? "en-GB" : "nl-BE";
+    const loc =
+  currentLang==="fr" ? "fr-FR" :
+  currentLang==="en" ? "en-GB" :
+  currentLang==="de" ? "de-DE" :
+  currentLang==="pl" ? "pl-PL" :
+  currentLang==="es" ? "es-ES" :
+  currentLang==="hu" ? "hu-HU" :
+  "nl-BE";
     return d.toLocaleDateString(loc);
   }
 
