@@ -2054,7 +2054,7 @@ function openLangModal(){
   body.innerHTML = `
     <div style="font-size:28px; font-weight:800; margin-bottom:12px;">${t("language")}</div>
     <div style="display:flex; flex-direction:column; gap:10px;">
-      ${["nl","en","fr"].map(code => `
+${["nl","en","fr","de"].map(code => `
         <button type="button" class="btnSmall" data-langpick="${code}"
           style="display:flex; justify-content:space-between; align-items:center; padding:14px 16px;">
           <span>${getLangName(code)}</span>
