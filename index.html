@@ -912,6 +912,11 @@ margin-bottom: 16px;
   line-height:1;
   transform:translateY(-1px);
 }
+.weekLock img{
+  width:20px;
+  height:20px;
+  vertical-align:middle;
+}
 </style>
 </head>
 
@@ -4030,6 +4035,15 @@ return hasNorm
 let editingId = null;
 
 function openModal(mode, entry=null){
+
+  if(mode === "edit" && entry?.date){
+    const weekInfo = getWeekInfo(entry.date);
+    if(isWeekLocked(weekInfo.key)){
+      showToast("Week is vergrendeld");
+      return;
+    }
+  }
+
   editingId = entry ? entry.id : null;
 
   if(modalTitle){
@@ -4101,6 +4115,15 @@ function netFromFields(type, start, end, pauseMin){
 function saveModal(){
   const date = mDate?.value;
   const type = mType?.value || "Werk";
+  
+  // 🔒 week lock check
+  if(date){
+    const weekInfo = getWeekInfo(date);
+    if(isWeekLocked(weekInfo.key)){
+      showToast("Week is vergrendeld");
+      return;
+    }
+  }
 
   // lees velden (mag leeg zijn bij sommige types)
   let start = `${mStartH?.value || "00"}:${mStartM?.value || "00"}`;
@@ -4191,6 +4214,16 @@ mType?.addEventListener("change", ()=>{
 
 function deleteEditing(){
   if(!editingId) return;
+
+  const entry = state.entries.find(e => e.id === editingId);
+  if(!entry) return;
+
+  const weekInfo = getWeekInfo(entry.date);
+  if(isWeekLocked(weekInfo.key)){
+    showToast("Week is vergrendeld");
+    return;
+  }
+
   openConfirm(t("confirm_delete_entry"), () => {
     const idx = state.entries.findIndex(e=>e.id===editingId);
     if(idx>=0) state.entries[idx].deletedAt = Date.now();
@@ -4261,7 +4294,22 @@ function getWeekInfo(dateStr){
     key: `${date.getUTCFullYear()}-W${String(weekNo).padStart(2,"0")}`
   };
 }
+function isWeekLocked(weekKey){
+  return meta?.weekLocks?.[weekKey] === true;
+}
 
+function toggleWeekLock(weekKey){
+  if(!meta.weekLocks) meta.weekLocks = {};
+
+  if(meta.weekLocks[weekKey]){
+    delete meta.weekLocks[weekKey];
+  }else{
+    meta.weekLocks[weekKey] = true;
+  }
+
+  saveMeta();
+  renderHistory();
+}
 function renderHistory(){
   if(!elHistoryList) return;
 
@@ -4282,13 +4330,14 @@ function renderHistory(){
   const groups = {};
   list.forEach(e=>{
     const info = getWeekInfo(e.date);
-    if(!groups[info.key]){
-      groups[info.key] = {
-        year: info.year,
-        week: info.week,
-        items: []
-      };
-    }
+ if(!groups[info.key]){
+  groups[info.key] = {
+    key: info.key,
+    year: info.year,
+    week: info.week,
+    items: []
+  };
+}
     groups[info.key].items.push(e);
   });
 
@@ -4313,7 +4362,14 @@ function renderHistory(){
     head.style.marginBottom = "10px";
     head.innerHTML = `
 <span>${t("week")} ${group.week}</span>
-      <span style="opacity:.75;">${group.items.length}</span>
+
+<span class="weekLock" data-week="${group.key}" style="cursor:pointer;">
+${isWeekLocked(group.key)
+ ? '<img src="lock_close.svg" style="width:20px;height:20px;">'
+ : '<img src="lock_open.svg" style="width:20px;height:20px;">'}
+</span>
+
+<span style="opacity:.75;">${group.items.length}</span>
     `;
 
     const body = document.createElement("div");
@@ -4322,6 +4378,24 @@ function renderHistory(){
     head.addEventListener("click", ()=>{
       body.style.display = body.style.display === "none" ? "block" : "none";
     });
+    const lock = head.querySelector(".weekLock");
+
+lock?.addEventListener("click",(ev)=>{
+  ev.stopPropagation();
+
+  const weekKey = lock.dataset.week;
+  const locked = isWeekLocked(weekKey);
+
+  if(locked){
+    openConfirm("Week ontgrendelen?", ()=>{
+      toggleWeekLock(weekKey);
+    });
+  }else{
+    openConfirm("Week vergrendelen?", ()=>{
+      toggleWeekLock(weekKey);
+    });
+  }
+});
 
     group.items.forEach(e=>{
       const div = document.createElement("div");
@@ -4343,15 +4417,33 @@ function renderHistory(){
         </div>
       `;
 
-      div.querySelector('[data-act="edit"]')?.addEventListener("click", ()=> openModal("edit", e));
-      div.querySelector('[data-act="del"]')?.addEventListener("click", ()=>{
-        openConfirm(t("confirm_delete_entry"), () => {
-          const idx = state.entries.findIndex(x=>x.id===e.id);
-          if(idx>=0) state.entries[idx].deletedAt = Date.now();
-          saveState();
-          renderAll();
-        });
-      });
+      div.querySelector('[data-act="edit"]')?.addEventListener("click", ()=>{
+  const weekInfo = getWeekInfo(e.date);
+
+  if(isWeekLocked(weekInfo.key)){
+    showToast("Week is vergrendeld");
+    return;
+  }
+
+  openModal("edit", e);
+});
+
+div.querySelector('[data-act="del"]')?.addEventListener("click", ()=>{
+  const weekInfo = getWeekInfo(e.date);
+
+  if(isWeekLocked(weekInfo.key)){
+    showToast("Week is vergrendeld");
+    return;
+  }
+
+  openConfirm(t("confirm_delete_entry"), () => {
+    const idx = state.entries.findIndex(x=>x.id===e.id);
+    if(idx>=0) state.entries[idx].deletedAt = Date.now();
+    saveState();
+    renderAll();
+  });
+});
+        
 
       body.appendChild(div);
     });
@@ -4421,6 +4513,7 @@ function renderHistory(){
         if(!Array.isArray(state.entries)) state.entries = [];
         if(!meta) meta = { lastBackupAt:null, lastBackupName:null, lastAutoBackupAt:null };
         if(!("lastAutoBackupAt" in meta)) meta.lastAutoBackupAt = null;
+        if(!meta.weekLocks) meta.weekLocks = {};
 
         saveState(); saveMeta();
         renderAll();
@@ -4899,13 +4992,18 @@ dayEdit?.addEventListener("click", () => {
   const ymdStr = dayTitle?.dataset?.ymd;
   if(!ymdStr) return;
 
+  const weekInfo = getWeekInfo(ymdStr);
+  if(isWeekLocked(weekInfo.key)){
+    showToast("Week is vergrendeld");
+    return;
+  }
+
   const e = entryForDate(ymdStr);
   if(!e) return;
 
   closeDayDetail();
   openModal("edit", e);
 });
-
 // Settings
 btnSaveSettings?.addEventListener("click", saveSettings);
 btnCloseModal?.addEventListener("click", closeModal);

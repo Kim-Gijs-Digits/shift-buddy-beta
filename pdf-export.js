@@ -89,14 +89,128 @@
       infoByType: { Werk:"", Vakantie:"Jour de congé", Ziekte:"Jour maladie", Recup:"Jour récup", Feestdag:"Jour férié" },
       unitsH: "h",
     },
+    de: {
+  title: (period) => `Shift-Tap - Arbeitszeiterfassung - ${period}`,
+  employer: "Arbeitgeber",
+  employee: "Arbeitnehmer",
+  normDay: "Normtag",
+  prevSaldo: "Überstundenstand Vormonat",
+  saldoOveruren: "Überstundenstand",
+  totalsHours: "Gesamtstunden",
+  totalsOverThis: "Überstunden in diesem Zeitraum",
+  makePdf: "PDF erstellen",
+  cancel: "Abbrechen",
+  pdfPrompt: "Welche Monate und/oder Daten möchten Sie exportieren?",
+  month: "Monat",
+  dates: "Daten",
+  from: "Von",
+  to: "Bis",
+  cols: ["Datum", "Start", "Ende", "Netto", "+/-", "Info", "Bemerkungen"],
+  types: { Werk:"Arbeit", Vakantie:"Urlaub", Ziekte:"Krank", Recup:"Ausgleich", Feestdag:"Feiertag" },
+  infoByType: { Werk:"", Vakantie:"Urlaubstag", Ziekte:"Krankheit", Recup:"Ausgleichstag", Feestdag:"Feiertag" },
+  unitsH: "u",
+},
+
+pl: {
+  title: (period) => `Shift-Tap - Ewidencja czasu pracy - ${period}`,
+  employer: "Pracodawca",
+  employee: "Pracownik",
+  normDay: "Norma dnia",
+  prevSaldo: "Saldo nadgodzin z poprzedniego miesiąca",
+  saldoOveruren: "Saldo nadgodzin",
+  totalsHours: "Łączne godziny",
+  totalsOverThis: "Nadgodziny w tym okresie",
+  makePdf: "Utwórz PDF",
+  cancel: "Anuluj",
+  pdfPrompt: "Które miesiące i/lub daty chcesz wyeksportować?",
+  month: "Miesiąc",
+  dates: "Daty",
+  from: "Od",
+  to: "Do",
+  cols: ["Data", "Start", "Koniec", "Netto", "+/-", "Info", "Uwagi"],
+  types: { Werk:"Praca", Vakantie:"Urlop", Ziekte:"Chorobowe", Recup:"Odbiór", Feestdag:"Święto" },
+  infoByType: { Werk:"", Vakantie:"Dzień urlopu", Ziekte:"Dzień chorobowy", Recup:"Dzień odbioru", Feestdag:"Święto" },
+  unitsH: "g",
+},
+
+es: {
+  title: (period) => `Shift-Tap - Registro de horas - ${period}`,
+  employer: "Empleador",
+  employee: "Empleado",
+  normDay: "Jornada normal",
+  prevSaldo: "Saldo de horas extra del mes anterior",
+  saldoOveruren: "Saldo de horas extra",
+  totalsHours: "Horas totales",
+  totalsOverThis: "Horas extra en este período",
+  makePdf: "Crear PDF",
+  cancel: "Cancelar",
+  pdfPrompt: "¿Qué mes(es) y/o fechas quieres exportar?",
+  month: "Mes",
+  dates: "Fechas",
+  from: "Desde",
+  to: "Hasta",
+  cols: ["Fecha", "Inicio", "Fin", "Neto", "+/-", "Info", "Observaciones"],
+  types: { Werk:"Trabajo", Vakantie:"Vacaciones", Ziekte:"Baja", Recup:"Recuperación", Feestdag:"Festivo" },
+  infoByType: { Werk:"", Vakantie:"Día de vacaciones", Ziekte:"Día de baja", Recup:"Día de recuperación", Feestdag:"Festivo" },
+  unitsH: "h",
+},
+
+hu: {
+  title: (period) => `Shift-Tap - Munkaidő nyilvántartás - ${period}`,
+  employer: "Munkáltató",
+  employee: "Munkavállaló",
+  normDay: "Normál nap",
+  prevSaldo: "Túlóra egyenleg előző hónap",
+  saldoOveruren: "Túlóra egyenleg",
+  totalsHours: "Összes óra",
+  totalsOverThis: "Túlóra ebben az időszakban",
+  makePdf: "PDF készítése",
+  cancel: "Mégse",
+  pdfPrompt: "Mely hónapokat és/vagy dátumokat szeretnéd exportálni?",
+  month: "Hónap",
+  dates: "Dátumok",
+  from: "Ettől",
+  to: "Eddig",
+  cols: ["Dátum", "Kezdés", "Vége", "Nettó", "+/-", "Infó", "Megjegyzések"],
+  types: { Werk:"Munka", Vakantie:"Szabadság", Ziekte:"Betegség", Recup:"Szabadnap", Feestdag:"Ünnepnap" },
+  infoByType: { Werk:"", Vakantie:"Szabadság nap", Ziekte:"Betegnap", Recup:"Szabadnap", Feestdag:"Ünnepnap" },
+  unitsH: "ó",
+},
+
+it: {
+  title: (period) => `Shift-Tap - Registro ore - ${period}`,
+  employer: "Datore di lavoro",
+  employee: "Dipendente",
+  normDay: "Giornata normale",
+  prevSaldo: "Saldo straordinari mese precedente",
+  saldoOveruren: "Saldo straordinari",
+  totalsHours: "Ore totali",
+  totalsOverThis: "Straordinari in questo periodo",
+  makePdf: "Crea PDF",
+  cancel: "Annulla",
+  pdfPrompt: "Quali mesi e/o date vuoi esportare?",
+  month: "Mese",
+  dates: "Date",
+  from: "Da",
+  to: "A",
+  cols: ["Data", "Inizio", "Fine", "Netto", "+/-", "Info", "Note"],
+  types: { Werk:"Lavoro", Vakantie:"Vacanza", Ziekte:"Malattia", Recup:"Recupero", Feestdag:"Festivo" },
+  infoByType: { Werk:"", Vakantie:"Giorno di vacanza", Ziekte:"Giorno di malattia", Recup:"Giorno di recupero", Feestdag:"Festivo" },
+  unitsH: "h",
+},
   };
 
   function getLang(state){
-    const l = (state?.settings?.lang || "nl").toLowerCase();
-    if (l.startsWith("en")) return "en";
-    if (l.startsWith("fr")) return "fr";
-    return "nl";
-  }
+  const l = (state?.settings?.lang || "nl").toLowerCase();
+  if (l.startsWith("en")) return "en";
+  if (l.startsWith("fr")) return "fr";
+  if (l.startsWith("de")) return "de";
+  if (l.startsWith("pl")) return "pl";
+  if (l.startsWith("es")) return "es";
+  if (l.startsWith("hu")) return "hu";
+  if (l.startsWith("it")) return "it";
+  return "nl";
+}
 
   // ---------- helpers ----------
   const pad2 = (n) => String(n).padStart(2, "0");
@@ -417,9 +531,14 @@
       // Build one row per entry (not per day) so it matches the detailed style
       for(const e of dayEntries){
         const type = e.type || "";
-        const start = e.start || "";
-        const end   = e.end || "";
-        const netMin = e.netMin || 0;
+let start = e.start || "";
+let end   = e.end || "";
+const netMin = e.netMin || 0;
+
+if(type !== "Werk"){
+  start = "—";
+  end = "—";
+}
 
         // totals
         if(type === "Werk") totalWorkNet += netMin;
@@ -430,30 +549,22 @@
         else if(type === "Recup") delta = -normDayMin;
         else delta = 0;
 
-        // Info/opmerkingen split
-        const note = (e.note || "").trim();
-        const shortLen = 36;
-        let info = "";
-        let remarks = "";
+// Info/opmerkingen split
+const note = (e.note || "").trim();
+let info = "";
+let remarks = "";
 
-        if(note){
-          if(note.length > shortLen){
-            info = note.slice(0, shortLen).trimEnd() + "…";
-            remarks = note;
-          }else{
-            info = note;
-            remarks = "";
-          }
-        }else{
-          info = L.infoByType[type] ?? (L.types[type] || type);
-          remarks = "";
-        }
+if(note){
+  remarks = note;           // notities altijd naar Opmerkingen
+}else if(type !== "Werk"){
+  info = L.infoByType[type] ?? (L.types[type] || type);
+} 
+rows.push([
 
-        rows.push([
           dmy(day),
           start,
           end,
-          minutesToHM(netMin, L.unitsH),
+          (type === "Werk") ? minutesToHM(netMin, L.unitsH) : "—",
           formatPlusMinus(delta, L.unitsH),
           info,
           remarks
@@ -531,6 +642,17 @@
 
     doc.text(`${L.totalsHours}: ${minutesToHM(totalWorkNet, L.unitsH)}`, margin, y2);
     doc.text(`${L.totalsOverThis}: ${formatPlusMinus(overtimeThis, L.unitsH)}`, margin, y2 + 6);
+    doc.text(`${L.saldoOveruren}: ${formatPlusMinus(saldoNew, L.unitsH)}`, margin, y2 + 12);
+
+    // Save
+    const safePeriod = (periodLabel || monthLabelFromYMD(fromYmd)).replace(/[^\d\-_/]/g,"_");
+    doc.save(`Shift-Tap_${safePeriod}.pdf`);
+
+    dlg.close();
+  });
+
+})();
+sOverThis}: ${formatPlusMinus(overtimeThis, L.unitsH)}`, margin, y2 + 6);
     doc.text(`${L.saldoOveruren}: ${formatPlusMinus(saldoNew, L.unitsH)}`, margin, y2 + 12);
 
     // Save
