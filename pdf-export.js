@@ -346,19 +346,24 @@ it: {
   }
 
   btnExportPdf.addEventListener("click", () => {
-    const state = loadState();
-    fillMonthSelect(state);
 
-    // default = month mode
-    const radios = [...dlg.querySelectorAll('input[name="pdfMode"]')];
-    const rMonth = radios.find(r=>r.value==="month");
-    if(rMonth) rMonth.checked = true;
-    syncModeUI();
+  alert("PDF klik werkt");
 
-    // convenience: set range to selected month too
-    defaultRangeToMonth(monthSelect.value || "");
-    dlg.showModal();
-  });
+  const state = loadState();
+  fillMonthSelect(state);
+
+  const radios = [...dlg.querySelectorAll('input[name="pdfMode"]')];
+  const rMonth = radios.find(r=>r.value==="month");
+  if(rMonth) rMonth.checked = true;
+
+  syncModeUI();
+
+  defaultRangeToMonth(monthSelect.value || "");
+
+  alert("Voor showModal");
+
+  dlg.showModal();
+});
 
   btnCancel?.addEventListener("click", () => dlg.close());
 
