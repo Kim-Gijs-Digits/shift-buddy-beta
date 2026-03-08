@@ -1532,7 +1532,12 @@ margin-bottom: 16px;
 
 
 window.onerror = function(message, source, lineno, colno, error){
-  alert("JS fout:\n" + message + "\nLijn: " + lineno + ":" + colno);
+  alert(
+    "JS fout:\n" +
+    message +
+    "\nBron: " + source +
+    "\nLijn: " + lineno + ":" + colno
+  );
   return false;
 };
 
