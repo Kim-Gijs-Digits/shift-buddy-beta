@@ -652,14 +652,4 @@ rows.push([
   });
 
 })();
-sOverThis}: ${formatPlusMinus(overtimeThis, L.unitsH)}`, margin, y2 + 6);
-    doc.text(`${L.saldoOveruren}: ${formatPlusMinus(saldoNew, L.unitsH)}`, margin, y2 + 12);
 
-    // Save
-    const safePeriod = (periodLabel || monthLabelFromYMD(fromYmd)).replace(/[^\d\-_/]/g,"_");
-    doc.save(`Shift-Tap_${safePeriod}.pdf`);
-
-    dlg.close();
-  });
-
-})();
