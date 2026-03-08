@@ -45,11 +45,11 @@ body{
   padding:16px;
 }
 
-.row{display:flex;gap:14px;margin-bottom:14px}
-.sp{height:12px}
-.hr{height:1px;background:var(--line);margin:14px 0}
-.muted{color:var(--muted)}
-.muted2{color:var(--muted2)}
+  .row{display:flex;gap:14px;margin-bottom:14px}
+  .sp{height:12px}
+  .hr{height:1px;background:var(--line);margin:14px 0}
+  .muted{color:var(--muted)}
+  .muted2{color:var(--muted2)}
 
 .bigTimer{
   text-align:center;
@@ -63,7 +63,7 @@ body{
    ========================================= */
 .btnHalf{
   flex:1 1 0;
-  width:0;                 /* <-- dit forceert exact gelijke breedte */
+  width:0;          
   min-width:0;
 
   height:60px;
@@ -84,19 +84,19 @@ body{
   box-shadow:0 10px 22px rgba(0,0,0,.22);
   transition: transform .12s ease;
 }
-.btnHalf:hover{ transform: translateY(-2px); }
+  .btnHalf:hover{ transform: translateY(-2px); }
 
 /* Home kleuren */
-.btnStart{background:var(--green);color:#06140d}
-.btnPause{background:var(--red);color:#1a0707}
-.btnRecup{background:#4b77e6;color:#fff}
+  .btnStart{background:var(--green);color:#06140d}
+  .btnPause{background:var(--red);color:#1a0707}
+  .btnRecup{background:#4b77e6;color:#fff}
 
 /* Home Opslaan = wit */
-.btnSave{background:rgba(255,255,255,.92); color:#111}
+  .btnSave{background:rgba(255,255,255,.92); color:#111}
 
 /* Kleine layout fixes (optioneel) */
-.row{ margin-bottom:0; }
-.sp{ height:12px; }
+  .row{ margin-bottom:0; }
+  .sp{ height:12px; }
 
 /* =========================================
    Cards / entries
@@ -169,8 +169,8 @@ body{
   margin-bottom:14px;
   width:100%;
 }
-.title{min-width:0; width:100%;}
-.title h1{margin:0; font-size:34px; line-height:1.05; letter-spacing:.2px}
+  .title{min-width:0; width:100%;}
+  .title h1{margin:0; font-size:34px; line-height:1.05; letter-spacing:.2px}
 
 .sub{ margin-top:6px; font-size:14px; opacity:.75; }
 
@@ -874,6 +874,41 @@ margin-bottom: 16px;
 .setupLangSelect{
   flex:1;
 }
+/* ===== Shift-Tap style voor uur/minuut dropdowns ===== */
+.timeSelectRow{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.timeSelect{
+  height:52px;
+  min-width:68px;
+  padding:0 10px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.10);
+  color:rgba(255,255,255,.92);
+  font-weight:900;
+  font-size:18px;
+  box-shadow:0 10px 22px rgba(0,0,0,.12);
+  appearance:auto;
+  -webkit-appearance:menulist;
+  -moz-appearance:menulist;
+  text-align:center;
+}
+
+.timeSelect.small{
+  min-width:74px;
+}
+
+.timeColon{
+  font-weight:900;
+  font-size:22px;
+  color:rgba(255,255,255,.92);
+  line-height:1;
+  transform:translateY(-1px);
+}
 </style>
 </head>
 
@@ -888,7 +923,7 @@ margin-bottom: 16px;
             <img src="ST-logo.png" alt="Shift Tap logo" class="app-logo">
             <div class="app-title-wrap">
               <h1>Shift-Tap</h1>
-<div class="sub" id="appVersionText">v2.0.2</div>
+<div class="sub" id="appVersionText"></div>
             </div>
           </div>
 
@@ -1101,14 +1136,107 @@ margin-bottom: 16px;
 
 <!-- Start saldo -->
 <div class="label-with-info">
-  <label for="startSaldoInput" data-i18n="start_saldo">
-    Start saldo overuren (u:min)
-  </label>
+<label data-i18n="start_saldo">
+  Start saldo overuren (u:min)
+</label>
   <span class="info-icon" id="infoStartSaldo">ⓘ</span>
 <div class="info-bubble" id="bubbleStartSaldo" data-i18n="start_saldo_info"></div>
 </div>
 
-<input id="startSaldoInput" type="text" value="0:00" placeholder="60:00" />
+<div class="timeSelectRow">
+<select id="startSaldoH" class="timeSelect">
+<option>00</option><option>01</option><option>02</option><option>03</option>
+<option>04</option><option>05</option><option>06</option><option>07</option>
+<option>08</option><option>09</option><option>10</option><option>11</option>
+<option>12</option><option>13</option><option>14</option><option>15</option>
+<option>16</option><option>17</option><option>18</option><option>19</option>
+<option>20</option><option>21</option><option>22</option><option>23</option>
+<option>24</option><option>25</option><option>26</option><option>27</option>
+<option>28</option><option>29</option><option>30</option><option>31</option>
+<option>32</option><option>33</option><option>34</option><option>35</option>
+<option>36</option><option>37</option><option>38</option><option>39</option>
+<option>40</option><option>41</option><option>42</option><option>43</option>
+<option>44</option><option>45</option><option>46</option><option>47</option>
+<option>48</option><option>49</option><option>50</option><option>51</option>
+<option>52</option><option>53</option><option>54</option><option>55</option>
+<option>56</option><option>57</option><option>58</option><option>59</option>
+<option>60</option><option>61</option><option>62</option><option>63</option>
+<option>64</option><option>65</option><option>66</option><option>67</option>
+<option>68</option><option>69</option><option>70</option><option>71</option>
+<option>72</option><option>73</option><option>74</option><option>75</option>
+<option>76</option><option>77</option><option>78</option><option>79</option>
+<option>80</option><option>81</option><option>82</option><option>83</option>
+<option>84</option><option>85</option><option>86</option><option>87</option>
+<option>88</option><option>89</option><option>90</option><option>91</option>
+<option>92</option><option>93</option><option>94</option><option>95</option>
+<option>96</option><option>97</option><option>98</option><option>99</option>
+<option>100</option>
+  </select>
+  <span class="timeColon">:</span>
+<select id="startSaldoM" class="timeSelect">
+  <option>00</option>
+  <option>01</option>
+  <option>02</option>
+  <option>03</option>
+  <option>04</option>
+  <option>05</option>
+  <option>06</option>
+  <option>07</option>
+  <option>08</option>
+  <option>09</option>
+  <option>10</option>
+  <option>11</option>
+  <option>12</option>
+  <option>13</option>
+  <option>14</option>
+  <option>15</option>
+  <option>16</option>
+  <option>17</option>
+  <option>18</option>
+  <option>19</option>
+  <option>20</option>
+  <option>21</option>
+  <option>22</option>
+  <option>23</option>
+  <option>24</option>
+  <option>25</option>
+  <option>26</option>
+  <option>27</option>
+  <option>28</option>
+  <option>29</option>
+  <option>30</option>
+  <option>31</option>
+  <option>32</option>
+  <option>33</option>
+  <option>34</option>
+  <option>35</option>
+  <option>36</option>
+  <option>37</option>
+  <option>38</option>
+  <option>39</option>
+  <option>40</option>
+  <option>41</option>
+  <option>42</option>
+  <option>43</option>
+  <option>44</option>
+  <option>45</option>
+  <option>46</option>
+  <option>47</option>
+  <option>48</option>
+  <option>49</option>
+  <option>50</option>
+  <option>51</option>
+  <option>52</option>
+  <option>53</option>
+  <option>54</option>
+  <option>55</option>
+  <option>56</option>
+  <option>57</option>
+  <option>58</option>
+  <option>59</option>
+
+  </select>
+</div>
 
 <div class="sp"></div>
 
@@ -1120,19 +1248,61 @@ margin-bottom: 16px;
   <span class="info-icon" id="infoDefaultBreak">ⓘ</span>
   <div class="info-bubble" id="bubbleDefaultBreak" data-i18n="default_break_info"></div>
 </div>
-    <input id="pauseMin" type="number" min="0" step="5" value="30" />
+<select id="pauseMin" class="timeSelect">
+  <option value="0">0</option>
+  <option value="5">5</option>
+  <option value="10">10</option>
+  <option value="15">15</option>
+  <option value="20">20</option>
+  <option value="25">25</option>
+  <option value="30" selected>30</option>
+  <option value="35">35</option>
+  <option value="40">40</option>
+  <option value="45">45</option>
+  <option value="50">50</option>
+  <option value="55">55</option>
+  <option value="60">60</option>
+</select>
 
     <div class="hr"></div>
 
     <!-- Normale werkdag -->
 <div class="label-with-info">
-  <label for="normDayInput" data-i18n="norm_day">
+<label data-i18n="norm_day">
     Duur normale werkdag (u:min)
   </label>
   <span class="info-icon" id="infoNormDay">ⓘ</span>
   <div class="info-bubble" id="bubbleNormDay" data-i18n="norm_day_info"></div>
 </div>
-    <input id="normDayInput" type="text" value="7:30" placeholder="7:30" />
+<div class="timeSelectRow">
+
+  <select id="normDayH" class="timeSelect">
+    <option>00</option><option>01</option><option>02</option><option>03</option>
+    <option>04</option><option>05</option><option>06</option><option>07</option>
+    <option>08</option><option>09</option><option>10</option><option>11</option>
+    <option>12</option><option>13</option><option>14</option><option>15</option>
+    <option>16</option><option>17</option><option>18</option><option>19</option>
+    <option>20</option><option>21</option><option>22</option><option>23</option>
+  </select>
+
+  <span class="timeColon">:</span>
+
+  <select id="normDayM" class="timeSelect">
+    <option>00</option><option>01</option><option>02</option><option>03</option><option>04</option>
+    <option>05</option><option>06</option><option>07</option><option>08</option><option>09</option>
+    <option>10</option><option>11</option><option>12</option><option>13</option><option>14</option>
+    <option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+    <option>20</option><option>21</option><option>22</option><option>23</option><option>24</option>
+    <option>25</option><option>26</option><option>27</option><option>28</option><option>29</option>
+    <option>30</option><option>31</option><option>32</option><option>33</option><option>34</option>
+    <option>35</option><option>36</option><option>37</option><option>38</option><option>39</option>
+    <option>40</option><option>41</option><option>42</option><option>43</option><option>44</option>
+    <option>45</option><option>46</option><option>47</option><option>48</option><option>49</option>
+    <option>50</option><option>51</option><option>52</option><option>53</option><option>54</option>
+    <option>55</option><option>56</option><option>57</option><option>58</option><option>59</option>
+  </select>
+
+</div>
 
     <div class="row" style="margin-top:16px;">
       <button class="btnGhost" id="btnSaveSettings" data-i18n="settings">
@@ -1216,22 +1386,85 @@ margin-bottom: 16px;
     </div>
   </div>
 
-  <div class="row3">
-    <div>
-      <label for="mStart" data-i18n="lbl_start">Start (HH:MM)</label>
-      <input id="mStart" type="time">
-    </div>
+<div class="row3">
+  <div>
+    <label data-i18n="lbl_start">Start (HH:MM)</label>
+    <div class="timeSelectRow">
+<select id="mStartH" class="timeSelect">
+        <option>00</option><option>01</option><option>02</option><option>03</option>
+        <option>04</option><option>05</option><option>06</option><option>07</option>
+        <option>08</option><option>09</option><option>10</option><option>11</option>
+        <option>12</option><option>13</option><option>14</option><option>15</option>
+        <option>16</option><option>17</option><option>18</option><option>19</option>
+        <option>20</option><option>21</option><option>22</option><option>23</option>
+      </select>
+<span class="timeColon">:</span>
+<select id="mStartM" class="timeSelect">
+<option>00</option><option>01</option><option>02</option><option>03</option><option>04</option>
+<option>05</option><option>06</option><option>07</option><option>08</option><option>09</option>
+<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option>
+<option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+<option>20</option><option>21</option><option>22</option><option>23</option><option>24</option>
+<option>25</option><option>26</option><option>27</option><option>28</option><option>29</option>
+<option>30</option><option>31</option><option>32</option><option>33</option><option>34</option>
+<option>35</option><option>36</option><option>37</option><option>38</option><option>39</option>
+<option>40</option><option>41</option><option>42</option><option>43</option><option>44</option>
+<option>45</option><option>46</option><option>47</option><option>48</option><option>49</option>
+<option>50</option><option>51</option><option>52</option><option>53</option><option>54</option>
+<option>55</option><option>56</option><option>57</option><option>58</option><option>59</option>
 
-    <div>
-      <label for="mEnd" data-i18n="lbl_end">Einde (HH:MM)</label>
-      <input id="mEnd" type="time">
-    </div>
-
-    <div>
-      <label for="mPause" data-i18n="lbl_pause">Pauze (min)</label>
-      <input id="mPause" type="number" min="0" step="5" value="30">
+      </select>
     </div>
   </div>
+
+  <div>
+    <label data-i18n="lbl_end">Einde (HH:MM)</label>
+<div class="timeSelectRow">
+<select id="mEndH" class="timeSelect">
+        <option>00</option><option>01</option><option>02</option><option>03</option>
+        <option>04</option><option>05</option><option>06</option><option>07</option>
+        <option>08</option><option>09</option><option>10</option><option>11</option>
+        <option>12</option><option>13</option><option>14</option><option>15</option>
+        <option>16</option><option>17</option><option>18</option><option>19</option>
+        <option>20</option><option>21</option><option>22</option><option>23</option>
+      </select>
+<span class="timeColon">:</span>
+<select id="mEndM" class="timeSelect">
+<option>00</option><option>01</option><option>02</option><option>03</option><option>04</option>
+<option>05</option><option>06</option><option>07</option><option>08</option><option>09</option>
+<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option>
+<option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+<option>20</option><option>21</option><option>22</option><option>23</option><option>24</option>
+<option>25</option><option>26</option><option>27</option><option>28</option><option>29</option>
+<option>30</option><option>31</option><option>32</option><option>33</option><option>34</option>
+<option>35</option><option>36</option><option>37</option><option>38</option><option>39</option>
+<option>40</option><option>41</option><option>42</option><option>43</option><option>44</option>
+<option>45</option><option>46</option><option>47</option><option>48</option><option>49</option>
+<option>50</option><option>51</option><option>52</option><option>53</option><option>54</option>
+<option>55</option><option>56</option><option>57</option><option>58</option><option>59</option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <label for="mPause" data-i18n="lbl_pause">Pauze (min)</label>
+    <select id="mPause">
+      <option value="0">0</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="25">25</option>
+      <option value="30" selected>30</option>
+      <option value="35">35</option>
+      <option value="40">40</option>
+      <option value="45">45</option>
+      <option value="50">50</option>
+      <option value="55">55</option>
+      <option value="60">60</option>
+    </select>
+  </div>
+</div>
 
   <div class="sp"></div>
 
@@ -1300,7 +1533,7 @@ window.onerror = function(message, source, lineno, colno, error){
      ========================= */
   const APP_ID = "shifttap";
 const APP_CHANNEL = "stable_met_gmail_pdf_setuppagev1";
-const APP_VERSION = "2.0.3";
+const APP_VERSION = "2.0.4";
 
 
 
@@ -2058,8 +2291,8 @@ de: {
 
   work: "Arbeit",
   work_label: "ARBEIT",
-  recup: "Freizeitausgleich",
-  recup_line: "FREIZEITAUSGLEICH - wird von Überstunden abgezogen",
+  recup: "Ausgleich",
+  recup_line: "Ausgleich - wird von Überstunden abgezogen",
   sick: "Krank",
   vacation: "Urlaub",
   holiday: "Feiertag",
@@ -2849,7 +3082,6 @@ function scheduleCloudPush(){
 
   function saveState(){ 
   localStorage.setItem(STORE_KEY, JSON.stringify(state)); 
-  scheduleCloudPush();
 }
   function saveMeta(){ localStorage.setItem(META_KEY, JSON.stringify(meta)); }
 
@@ -2860,7 +3092,8 @@ function scheduleCloudPush(){
   const elTimer           = document.getElementById("timer");
   const elStatus          = document.getElementById("status");
   const elPauseMin        = document.getElementById("pauseMin");
-  const elNormDayInput    = document.getElementById("normDayInput");
+  const elNormDayH = document.getElementById("normDayH");
+const elNormDayM = document.getElementById("normDayM");
 
   const elTodayWork       = document.getElementById("todayWork");
   const elWeekWork        = document.getElementById("weekWork");
@@ -2879,7 +3112,8 @@ const elVacTaken = document.getElementById("vacTaken");
   const elOnlineBadge     = document.getElementById("onlineBadge");
   const elLastBackupText  = document.getElementById("lastBackupText");
   const btnBackupNow      = document.getElementById("btnBackupNow");
-  const elStartSaldoInput = document.getElementById("startSaldoInput");
+  const elStartSaldoH = document.getElementById("startSaldoH");
+const elStartSaldoM = document.getElementById("startSaldoM");
 
 const infoStartSaldo = document.getElementById("infoStartSaldo");
 const bubbleStartSaldo = document.getElementById("bubbleStartSaldo");
@@ -2970,8 +3204,10 @@ document.addEventListener("click", closeAllBubbles);
   const btnDeleteInModal  = document.getElementById("btnDeleteInModal");
   const mDate             = document.getElementById("mDate");
   const mType             = document.getElementById("mType");
-  const mStart            = document.getElementById("mStart");
-  const mEnd              = document.getElementById("mEnd");
+  const mStartH = document.getElementById("mStartH");
+const mStartM = document.getElementById("mStartM");
+const mEndH   = document.getElementById("mEndH");
+const mEndM   = document.getElementById("mEndM");
   const mPause            = document.getElementById("mPause");
   const mNote             = document.getElementById("mNote");
   const elCalGrid  = document.getElementById("calGrid");
@@ -3021,14 +3257,14 @@ verrekenModal?.addEventListener("click", (e) => {
 });
 
 function getLangName(code){
-  if(code === "nl") return "Nederlands";
-  if(code === "en") return "English";
-  if(code === "fr") return "Français";
-  if(code === "de") return "Deutsch";
-  if(code === "pl") return "Polski";
-  if(code === "es") return "Español";
-  if(code === "hu") return "Magyar";
-  if(code === "it") return "Italiano";
+  if(code === "nl") return "🇳🇱 Nederlands";
+  if(code === "en") return "🇬🇧 English";
+  if(code === "fr") return "🇫🇷 Français";
+  if(code === "de") return "🇩🇪 Deutsch";
+  if(code === "pl") return "🇵🇱 Polski";
+  if(code === "es") return "🇪🇸 Español";
+  if(code === "hu") return "🇭🇺 Magyar";
+  if(code === "it") return "🇮🇹 Italiano";
   return code;
 }
 
@@ -3064,7 +3300,7 @@ function openLangModal(){
   const current = localStorage.getItem("lang") || window.currentLang || "nl";
 
   body.innerHTML = `
-    <div style="font-size:26px;font-weight:800;margin-bottom:12px;">Taal</div>
+<div style="font-size:26px;font-weight:800;margin-bottom:12px;">${t("language")}</div>
     <div style="display:flex;flex-direction:column;gap:10px;">
     ${["nl","en","fr","de","pl","es","hu","it"].map(code => `
         <button type="button" class="btnSmall" data-langpick="${code}"
@@ -3156,9 +3392,14 @@ function escapeHtml(str){
 
 function typeAbbr(type){
   const abbr = {
-    nl: { Werk:"W",  Recup:"R",   Ziekte:"Z", Vakantie:"V", Feestdag:"F" },
-    fr: { Werk:"TR", Recup:"JDR", Ziekte:"M", Vakantie:"V", Feestdag:"JF" },
-    en: { Werk:"W",  Recup:"CD",  Ziekte:"SL", Vakantie:"V", Feestdag:"PH" }
+    nl: { Werk:"",  Recup:"",   Ziekte:"", Vakantie:"", Feestdag:"" },
+    fr: { Werk:"", Recup:"", Ziekte:"", Vakantie:"", Feestdag:"" },
+    en: { Werk:"",  Recup:"",  Ziekte:"", Vakantie:"", Feestdag:"" },
+    de:{Werk:"",Recup:"",Ziekte:"",Vakantie:"",Feestdag:""},
+    it:{Werk:"",Recup:"",Ziekte:"",Vakantie:"",Feestdag:""},
+    es:{Werk:"",Recup:"",Ziekte:"",Vakantie:"",Feestdag:""},
+    pl:{Werk:"",Recup:"",Ziekte:"",Vakantie:"",Feestdag:""},
+    hu:{Werk:"",Recup:"",Ziekte:"",Vakantie:"",Feestdag:""}
   };
 
   const map = abbr[currentLang] || abbr.nl;
@@ -3762,73 +4003,87 @@ return hasNorm
     });
   }
 
-  /* =========================
-     Modal (manual add/edit)
-     ========================= */
-  let editingId = null;
+/* =========================
+   Modal (manual add/edit)
+   ========================= */
+let editingId = null;
 
-  function openModal(mode, entry=null){
-    editingId = entry ? entry.id : null;
+function openModal(mode, entry=null){
+  editingId = entry ? entry.id : null;
 
-    if(modalTitle){
-      modalTitle.textContent = mode==="edit" ? t("modal_edit_title") : t("modal_add_title");
-    }
-
-    if(btnDeleteInModal){
-      btnDeleteInModal.style.display = mode==="edit" ? "inline-block" : "none";
-    }
-
-    if(mDate) mDate.value = entry?.date || ymd(new Date());
-    if(mType) mType.value = entry?.type || "Werk";
-
-    const effType = entry?.type || (mType ? mType.value : "Werk");
-
-    if(effType==="Recup"){
-      if(mStart) mStart.value = "";
-      if(mEnd)   mEnd.value   = "";
-      if(mPause) mPause.value = 0;
-    }else{
-      if(mStart) mStart.value = entry?.start || "06:00";
-      if(mEnd)   mEnd.value   = entry?.end   || "14:00";
-      if(mPause) mPause.value = entry?.pauseMin ?? 30;
-    }
-
-    if(mNote) mNote.value = entry?.note || "";
-
-    if(modalBack) modalBack.style.display = "flex";
-    applyLang();
+  if(modalTitle){
+    modalTitle.textContent = mode==="edit" ? t("modal_edit_title") : t("modal_add_title");
   }
 
-  function closeModal(){
-    if(modalBack) modalBack.style.display = "none";
-    editingId = null;
+  if(btnDeleteInModal){
+    btnDeleteInModal.style.display = mode==="edit" ? "inline-block" : "none";
   }
 
-  function netFromFields(type, start, end, pauseMin){
+  if(mDate) mDate.value = entry?.date || ymd(new Date());
+  if(mType) mType.value = entry?.type || "Werk";
+
+  const effType = entry?.type || (mType ? mType.value : "Werk");
+  const isZeroType = (effType === "Ziekte" || effType === "Vakantie" || effType === "Feestdag");
+
+  if(effType === "Recup" || isZeroType){
+    if(mStartH){ mStartH.value = "00"; mStartH.disabled = true; }
+    if(mStartM){ mStartM.value = "00"; mStartM.disabled = true; }
+    if(mEndH){ mEndH.value = "00"; mEndH.disabled = true; }
+    if(mEndM){ mEndM.value = "00"; mEndM.disabled = true; }
+    if(mPause){ mPause.value = 0; mPause.disabled = true; }
+  }else{
+    const startVal = entry?.start || "06:00";
+    const endVal   = entry?.end   || "14:00";
+
+    const [sh, sm] = startVal.split(":");
+    const [eh, em] = endVal.split(":");
+
+    if(mStartH){ mStartH.value = sh || "06"; mStartH.disabled = false; }
+    if(mStartM){ mStartM.value = sm || "00"; mStartM.disabled = false; }
+    if(mEndH){ mEndH.value = eh || "14"; mEndH.disabled = false; }
+    if(mEndM){ mEndM.value = em || "00"; mEndM.disabled = false; }
+    if(mPause){ mPause.value = entry?.pauseMin ?? 30; mPause.disabled = false; }
+  }
+
+  if(mNote) mNote.value = entry?.note || "";
+
+  if(modalBack) modalBack.style.display = "flex";
+  applyLang();
+}
+
+function closeModal(){
+  if(modalBack) modalBack.style.display = "none";
+  editingId = null;
+}
+
+function netFromFields(type, start, end, pauseMin){
   // Deze types tellen niet mee als werkuren (0 min)
   if(type === "Ziekte" || type === "Vakantie" || type === "Feestdag"){
     return 0;
   }
-  
-    if(type==="Recup") return RECUP_MIN;
 
-    const s = timeToMin(start);
-    const e = timeToMin(end);
-    if(s==null || e==null) return null;
-
-    let dur = e - s;
-    if(dur < 0) dur += 24*60;
-
-    return Math.max(0, dur - pauseMin);
+  // Recup = volledige normale werkdag
+  if(type === "Recup"){
+    return state?.settings?.normDayMin ?? NORM_MIN;
   }
 
-  function saveModal(){
+  const s = timeToMin(start);
+  const e = timeToMin(end);
+  if(s == null || e == null) return null;
+
+  let dur = e - s;
+  if(dur < 0) dur += 24 * 60;
+
+  return Math.max(0, dur - pauseMin);
+}
+
+function saveModal(){
   const date = mDate?.value;
   const type = mType?.value || "Werk";
 
   // lees velden (mag leeg zijn bij sommige types)
-  let start = (mStart?.value || "").trim();
-  let end   = (mEnd?.value || "").trim();
+  let start = `${mStartH?.value || "00"}:${mStartM?.value || "00"}`;
+  let end   = `${mEndH?.value || "00"}:${mEndM?.value || "00"}`;
   let pauseMin = clamp(parseInt(mPause?.value || "0", 10) || 0, 0, 600);
 
   if(!date){
@@ -3838,14 +4093,14 @@ return hasNorm
 
   const isZeroType = (type === "Ziekte" || type === "Vakantie" || type === "Feestdag");
 
-  // ✅ Zero-types: geen tijden nodig, alles naar null/0
-  if(isZeroType){
+  // Zero-types en recup hebben geen tijden nodig
+  if(type === "Recup" || isZeroType){
     start = null;
     end = null;
     pauseMin = 0;
   }
 
-  const netMin = isZeroType ? 0 : netFromFields(type, start, end, pauseMin);
+  const netMin = netFromFields(type, start, end, pauseMin);
 
   if(netMin == null){
     showToast(t("err_fill_times"));
@@ -3886,86 +4141,160 @@ return hasNorm
   renderAll();
 }
 
-  mType?.addEventListener("change", ()=>{
+mType?.addEventListener("change", ()=>{
   const v = mType.value;
+  const isZeroType = (v === "Ziekte" || v === "Vakantie" || v === "Feestdag");
 
-  const isZeroType = (v==="Ziekte" || v==="Vakantie" || v==="Feestdag");
+  if(v === "Recup" || isZeroType){
 
-  if(v==="Recup" || isZeroType){
-    if(mStart) mStart.value = "";
-    if(mEnd)   mEnd.value   = "";
-    if(mPause) mPause.value = 0;
+    if(mStartH){ mStartH.value = "00"; mStartH.disabled = true; }
+    if(mStartM){ mStartM.value = "00"; mStartM.disabled = true; }
+
+    if(mEndH){ mEndH.value = "00"; mEndH.disabled = true; }
+    if(mEndM){ mEndM.value = "00"; mEndM.disabled = true; }
+
+    if(mPause){ mPause.value = 0; mPause.disabled = true; }
+
   }else{
-    if(mStart && !mStart.value) mStart.value = "08:00";
-    if(mEnd   && !mEnd.value)   mEnd.value   = "15:30";
-    if(mPause && !mPause.value) mPause.value = 30;
+
+    if(mStartH){ mStartH.disabled = false; if(!mStartH.value) mStartH.value = "08"; }
+    if(mStartM){ mStartM.disabled = false; if(!mStartM.value) mStartM.value = "00"; }
+
+    if(mEndH){ mEndH.disabled = false; if(!mEndH.value) mEndH.value = "15"; }
+    if(mEndM){ mEndM.disabled = false; if(!mEndM.value) mEndM.value = "30"; }
+
+    if(mPause){ mPause.disabled = false; if(!mPause.value) mPause.value = 30; }
+
   }
 });
-  function deleteEditing(){
-    if(!editingId) return;
-    openConfirm(t("confirm_delete_entry"), () => {
-      const idx = state.entries.findIndex(e=>e.id===editingId);
-      if(idx>=0) state.entries[idx].deletedAt = Date.now();
-      saveState();
-      closeModal();
-      renderAll();
-    });
-  }
 
-  /* =========================
-     History rendering
-     ========================= */
-  function entryTitle(e){
-    const d = new Date(e.date);
-    const loc =
-  currentLang==="fr" ? "fr-FR" :
-  currentLang==="en" ? "en-GB" :
-  currentLang==="de" ? "de-DE" :
-  currentLang==="pl" ? "pl-PL" :
-  currentLang==="es" ? "es-ES" :
-  currentLang==="hu" ? "hu-HU" :
-  currentLang==="it" ? "it-IT" :
-  "nl-BE";
-    return d.toLocaleDateString(loc);
-  }
+function deleteEditing(){
+  if(!editingId) return;
+  openConfirm(t("confirm_delete_entry"), () => {
+    const idx = state.entries.findIndex(e=>e.id===editingId);
+    if(idx>=0) state.entries[idx].deletedAt = Date.now();
+    saveState();
+    closeModal();
+    renderAll();
+  });
+}
+/* =========================
+   History rendering
+   ========================= */
+function entryTitle(e){
+  const d = new Date(e.date);
+  const loc =
+    currentLang==="fr" ? "fr-FR" :
+    currentLang==="en" ? "en-GB" :
+    currentLang==="de" ? "de-DE" :
+    currentLang==="pl" ? "pl-PL" :
+    currentLang==="es" ? "es-ES" :
+    currentLang==="hu" ? "hu-HU" :
+    currentLang==="it" ? "it-IT" :
+    "nl-BE";
+  return d.toLocaleDateString(loc);
+}
 
-  function entrySubtitle(e){
+function entrySubtitle(e){
   const noteLine = e.note ? `<br><br><span class="noteLine">📝 ${e.note}</span>` : "";
 
   if(e.type==="Recup"){
     return `${t("recup").toUpperCase()}<br>${t("recup_line")} (${formatHM(e.netMin||0)})${noteLine}`;
   }
 
-if(e.type==="Ziekte" || e.type==="Vakantie" || e.type==="Feestdag"){
-  const map = { "Ziekte":"sick", "Vakantie":"vacation", "Feestdag":"holiday" };
-  const key = map[e.type];
-  return `${(key ? t(key) : e.type).toUpperCase()}${noteLine}`;
-}
+  if(e.type==="Ziekte" || e.type==="Vakantie" || e.type==="Feestdag"){
+    const map = { "Ziekte":"sick", "Vakantie":"vacation", "Feestdag":"holiday" };
+    const key = map[e.type];
+    return `${(key ? t(key) : e.type).toUpperCase()}${noteLine}`;
+  }
+
   return `${t("work_label")}<br>
 ${e.start || "-"}-${e.end || "-"}<br>
 ${t("net_line")} ${formatHM(e.netMin||0)}<br>
 ${t("pause_line")} ${e.pauseMin||0} ${t("minutes")}${noteLine}`;
 }
 
-  function entryChip(e){ return formatHM(e.netMin || 0); }
-
-  function renderHistory(){
-    if(!elHistoryList) return;
-    const list = state.entries
-      .filter(e=>!e.deletedAt)
-      .slice()
-      .sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
-
-if(list.length===0){
-  elHistoryList.innerHTML = `
-    <div class="muted" style="font-weight:950; margin-top:12px;">
-      ${t("no_entries")}
-    </div>
-  `;
-  return;
+function entryChip(e){
+  return formatHM(e.netMin || 0);
 }
-    elHistoryList.innerHTML = "";
-    list.forEach(e=>{
+
+function getWeekInfo(dateStr){
+  const d = new Date(dateStr);
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const dayNum = date.getUTCDay() || 7;
+  date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  const weekNo = Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+
+  return {
+    year: date.getUTCFullYear(),
+    week: weekNo,
+    key: `${date.getUTCFullYear()}-W${String(weekNo).padStart(2,"0")}`
+  };
+}
+
+function renderHistory(){
+  if(!elHistoryList) return;
+
+  const list = state.entries
+    .filter(e=>!e.deletedAt)
+    .slice()
+    .sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+
+  if(list.length===0){
+    elHistoryList.innerHTML = `
+      <div class="muted" style="font-weight:950; margin-top:12px;">
+        ${t("no_entries")}
+      </div>
+    `;
+    return;
+  }
+
+  const groups = {};
+  list.forEach(e=>{
+    const info = getWeekInfo(e.date);
+    if(!groups[info.key]){
+      groups[info.key] = {
+        year: info.year,
+        week: info.week,
+        items: []
+      };
+    }
+    groups[info.key].items.push(e);
+  });
+
+  const orderedWeeks = Object.values(groups).sort((a,b)=>{
+    if(b.year !== a.year) return b.year - a.year;
+    return b.week - a.week;
+  });
+
+  elHistoryList.innerHTML = "";
+
+  orderedWeeks.forEach(group=>{
+    const wrap = document.createElement("div");
+    wrap.style.marginTop = "12px";
+
+    const head = document.createElement("button");
+    head.type = "button";
+    head.className = "btnGhost";
+    head.style.display = "flex";
+    head.style.justifyContent = "space-between";
+    head.style.alignItems = "center";
+    head.style.width = "100%";
+    head.style.marginBottom = "10px";
+    head.innerHTML = `
+      <span>Week ${group.week}</span>
+      <span style="opacity:.75;">${group.items.length}</span>
+    `;
+
+    const body = document.createElement("div");
+    body.style.display = "block";
+
+    head.addEventListener("click", ()=>{
+      body.style.display = body.style.display === "none" ? "block" : "none";
+    });
+
+    group.items.forEach(e=>{
       const div = document.createElement("div");
       div.className = "entry";
       div.innerHTML = `
@@ -3975,15 +4304,16 @@ if(list.length===0){
         </div>
         <div class="right">
           <div class="chip">${entryChip(e)}</div>
-<button class="btnSmall"
-        data-act="edit"
-        data-i18n-aria="btn_edit"
-        aria-label="">
-  ✎
-</button>
+          <button class="btnSmall"
+                  data-act="edit"
+                  data-i18n-aria="btn_edit"
+                  aria-label="">
+            ✎
+          </button>
           <button class="btnSmall btnDanger" data-act="del">X</button>
         </div>
       `;
+
       div.querySelector('[data-act="edit"]')?.addEventListener("click", ()=> openModal("edit", e));
       div.querySelector('[data-act="del"]')?.addEventListener("click", ()=>{
         openConfirm(t("confirm_delete_entry"), () => {
@@ -3993,10 +4323,15 @@ if(list.length===0){
           renderAll();
         });
       });
-      elHistoryList.appendChild(div);
-    });
-  }
 
+      body.appendChild(div);
+    });
+
+    wrap.appendChild(head);
+    wrap.appendChild(body);
+    elHistoryList.appendChild(wrap);
+  });
+}
   /* =========================
      Backup meta
      ========================= */
@@ -4055,7 +4390,8 @@ if(list.length===0){
         if(!state.settings) state.settings = { startSaldoMin:0, normDayMin:NORM_MIN, lang:"nl" };
         if(!state.timer)    state.timer    = { running:false, startMs:null, accMs:0 };
         if(!Array.isArray(state.entries)) state.entries = [];
-        if(!meta) meta = { lastBackupAt:null, lastBackupName:null };
+        if(!meta) meta = { lastBackupAt:null, lastBackupName:null, lastAutoBackupAt:null };
+        if(!("lastAutoBackupAt" in meta)) meta.lastAutoBackupAt = null;
 
         saveState(); saveMeta();
         renderAll();
@@ -4252,7 +4588,29 @@ async function cloudPull(){
     showToast("❌ Cloud download mislukt", "warn");
   }
 }
+async function maybeAutoBackupOnOpen(){
+  try{
+    if(!(await ensureFirebase())) return;
 
+    const u = currentUser();
+    if(!u) return;
+
+    const now = Date.now();
+    const last = Number(meta?.lastAutoBackupAt || 0);
+    const DAY = 24 * 60 * 60 * 1000;
+
+    if(last && (now - last) < DAY) return;
+
+    await cloudPush();
+
+    meta.lastAutoBackupAt = now;
+    saveMeta();
+
+    console.log("Auto backup uitgevoerd");
+  }catch(err){
+    console.error("Auto backup mislukt", err);
+  }
+}
 /* ---------- UI wiring ---------- */
 function bindCloudButtons(){
   btnGoogleLogin?.addEventListener("click", ()=> loginGoogle().catch(console.error));
@@ -4297,11 +4655,24 @@ async function wireCloudAuthUI(){
    Settings
    ========================= */
 function renderSettings(){
-  if(elStartSaldoInput)
-    elStartSaldoInput.value = formatHM(state.settings.startSaldoMin || 0);
+  const startSaldoTxt = formatHM(state.settings.startSaldoMin || 0);
+let [ssh, ssm] = startSaldoTxt.split(":");
 
-  if(elNormDayInput)
-    elNormDayInput.value = formatHM(state.settings.normDayMin ?? NORM_MIN);
+ssh = String(ssh || "00").padStart(2,"0");
+ssm = String(ssm || "00").padStart(2,"0");
+
+if(elStartSaldoH) elStartSaldoH.value = ssh;
+if(elStartSaldoM) elStartSaldoM.value = ssm;
+
+  const normTxt = formatHM(state.settings.normDayMin ?? NORM_MIN);
+let [nh, nm] = normTxt.split(":");
+
+nh = String(nh || "07").padStart(2,"0");
+nm = String(nm || "30").padStart(2,"0");
+
+if(elNormDayH) elNormDayH.value = nh;
+if(elNormDayM) elNormDayM.value = nm;
+  if(elPauseMin) elPauseMin.value = String(state.settings.pauseMin ?? 30);
 
   const emp = document.getElementById("employeeName");
   const emr = document.getElementById("employerName");
@@ -4311,12 +4682,21 @@ function renderSettings(){
 }
 
 function saveSettings(){
-  const mins = parseHM(elStartSaldoInput?.value);
-  if(mins==null){ showToast(t("err_start_saldo_format"), "warn"); return; }
+  const startSaldoTxt = `${elStartSaldoH?.value || "00"}:${elStartSaldoM?.value || "00"}`;
+  const mins = parseHM(startSaldoTxt);
 
-  const norm = parseHM(elNormDayInput?.value);
-  if(norm==null){ showToast(t("err_normday_format"), "warn"); return; }
+  if(mins==null){
+    showToast(t("err_start_saldo_format"), "warn");
+    return;
+  }
 
+  const normTxt = `${elNormDayH?.value || "00"}:${elNormDayM?.value || "00"}`;
+  const norm = parseHM(normTxt);
+
+  if(norm==null){
+    showToast(t("err_normday_format"), "warn");
+    return;
+  }
   state.settings.startSaldoMin = mins;
   state.settings.normDayMin = norm;
   state.settings.lang = currentLang;
@@ -4554,6 +4934,7 @@ if(!isSetupDone()){
   }
   renderAll();
 applyLang();
+maybeAutoBackupOnOpen(); 
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -4581,19 +4962,14 @@ const setupBtn = document.getElementById("btnSetupStart");
 if (setupBtn) {
   setupBtn.addEventListener("click", () => {
 
-    const time = document.getElementById("setupNormHours")?.value;
+    const hhStr = document.getElementById("setupNormHoursH")?.value || "00";
+    const mmStr = document.getElementById("setupNormHoursM")?.value || "00";
     const pauseMin = parseInt(document.getElementById("setupPauseMin")?.value, 10);
 
-    if (!time || Number.isNaN(pauseMin)) {
-      showToast(t("setup_fill_fields"), "warn");
-      return;
-    }
+    const hh = parseInt(hhStr, 10);
+    const mm = parseInt(mmStr, 10);
 
-    const [h, m] = time.split(":");
-    const hh = parseInt(h, 10);
-    const mm = parseInt(m, 10);
-
-    if (Number.isNaN(hh) || Number.isNaN(mm)) {
+    if (Number.isNaN(hh) || Number.isNaN(mm) || Number.isNaN(pauseMin)) {
       showToast(t("setup_fill_fields"), "warn");
       return;
     }
@@ -4738,14 +5114,14 @@ init();
       <h2 style="margin:0 0 14px 0;">Choose language</h2>
 
       <div style="display:flex; flex-direction:column; gap:10px;">
-        <button type="button" class="btnGhost" id="btnLangNl">Nederlands</button>
-        <button type="button" class="btnGhost" id="btnLangEn">English</button>
-        <button type="button" class="btnGhost" id="btnLangFr">Français</button>
-        <button type="button" class="btnGhost" id="btnLangDe">Deutsch</button>
-        <button type="button" class="btnGhost" id="btnLangPl">Polski</button>
-        <button type="button" class="btnGhost" id="btnLangEs">Español</button>
-        <button type="button" class="btnGhost" id="btnLangHu">Magyar</button>
-        <button type="button" class="btnGhost" id="btnLangIt">Italiano</button>
+<button type="button" class="btnGhost" id="btnLangNl">🇳🇱 Nederlands</button>
+<button type="button" class="btnGhost" id="btnLangEn">🇬🇧 English</button>
+<button type="button" class="btnGhost" id="btnLangFr">🇫🇷 Français</button>
+<button type="button" class="btnGhost" id="btnLangDe">🇩🇪 Deutsch</button>
+<button type="button" class="btnGhost" id="btnLangPl">🇵🇱 Polski</button>
+<button type="button" class="btnGhost" id="btnLangEs">🇪🇸 Español</button>
+<button type="button" class="btnGhost" id="btnLangHu">🇭🇺 Magyar</button>
+<button type="button" class="btnGhost" id="btnLangIt">🇮🇹 Italiano</button>
       </div>
     </div>
   </div>
@@ -4771,15 +5147,57 @@ init();
       <div class="setupGrid">
 
         <div class="setupField">
-          <label for="setupNormHours" data-i18n="setup_normday">
+   <label data-i18n="setup_normday">
             Normale werkdag (uren)
           </label>
 
-<input
-  type="time"
-  id="setupNormHours"
-  value="00:00"
-  step="60">
+<div class="timeSelectRow">
+  
+<select id="setupNormHoursH" class="timeSelect">
+<option>00</option>
+<option>01</option>
+<option>02</option>
+<option>03</option>
+<option>04</option>
+<option>05</option>
+<option>06</option>
+<option>07</option>
+<option>08</option>
+<option>09</option>
+<option>10</option>
+<option>11</option>
+<option>12</option>
+<option>13</option>
+<option>14</option>
+<option>15</option>
+<option>16</option>
+<option>17</option>
+<option>18</option>
+<option>19</option>
+<option>20</option>
+<option>21</option>
+<option>22</option>
+<option>23</option>
+</select>
+
+<span class="timeColon">:</span>
+
+<select id="setupNormHoursM" class="timeSelect">
+<option>00</option><option>01</option><option>02</option><option>03</option><option>04</option>
+<option>05</option><option>06</option><option>07</option><option>08</option><option>09</option>
+<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option>
+<option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+<option>20</option><option>21</option><option>22</option><option>23</option><option>24</option>
+<option>25</option><option>26</option><option>27</option><option>28</option><option>29</option>
+<option>30</option><option>31</option><option>32</option><option>33</option><option>34</option>
+<option>35</option><option>36</option><option>37</option><option>38</option><option>39</option>
+<option>40</option><option>41</option><option>42</option><option>43</option><option>44</option>
+<option>45</option><option>46</option><option>47</option><option>48</option><option>49</option>
+<option>50</option><option>51</option><option>52</option><option>53</option><option>54</option>
+<option>55</option><option>56</option><option>57</option><option>58</option><option>59</option>
+</select>
+
+</div>
   
           <div class="setupHint" data-i18n="setup_norm_hint">
             Voorbeeld: 07:30 of 08:00
@@ -4791,13 +5209,23 @@ init();
             Pauze (minuten)
           </label>
 
-          <input
-            type="number"
-            id="setupPauseMin"
-            step="5"
-            min="0"
-            inputmode="numeric"
-            placeholder="bv. 30">
+     <select id="setupPauseMin">
+
+<option value="0">0</option>
+<option value="5">5</option>
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+<option value="25">25</option>
+<option value="30" selected>30</option>
+<option value="35">35</option>
+<option value="40">40</option>
+<option value="45">45</option>
+<option value="50">50</option>
+<option value="55">55</option>
+<option value="60">60</option>
+
+</select>
 
           <div class="setupHint" data-i18n="setup_pause_hint">
             Dit is uw standaard pauze, deze wordt automatisch afgetrokken.
