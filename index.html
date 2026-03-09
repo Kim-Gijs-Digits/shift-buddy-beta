@@ -947,6 +947,13 @@ margin-bottom: 16px;
   width:18px;
   height:18px;
 }
+.historyActions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
 </style>
 </head>
 
@@ -1057,30 +1064,32 @@ margin-bottom: 16px;
 <!-- ================= TAB 2 ================= -->
 <div id="tab2" class="tab" style="display:none;">
   <div class="card">
+
     <div class="h2Row">
       <h2 data-i18n="history_title">Historiek</h2>
+    </div>
 
-      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-        <button class="btnSmall" id="btnAddManual" data-i18n="manual" type="button">+ Handmatig</button>
+    <div class="historyActions">
+      <button class="btnSmall" id="btnAddManual"
+        data-i18n="manual" type="button">+ Handmatig</button>
 
-        <button class="btnSmall" id="btnExportPdf"
-          data-i18n="pdf_export_btn"
-          data-i18n-aria="pdf_export_btn_aria"
-          aria-label=""
-          type="button">📄 PDF</button>
+      <button class="btnSmall" id="btnExportPdf"
+        data-i18n="pdf_export_btn"
+        data-i18n-aria="pdf_export_btn_aria"
+        aria-label=""
+        type="button">📄 PDF</button>
 
-        <div class="label-with-info lockLegend">
-          <span class="info-icon" id="infoWeekLock">ⓘ</span>
+      <div class="label-with-info lockLegend">
+        <span class="info-icon" id="infoWeekLock">ⓘ</span>
 
-          <img src="lock_open.svg" class="lockMini" alt="">
-          <img src="lock_close.svg" class="lockMini" alt="">
+        <img src="lock_open.svg" class="lockMini" alt="">
+        <img src="lock_close.svg" class="lockMini" alt="">
 
-          <div class="info-bubble" id="bubbleWeekLock"
-               data-i18n="week_lock_info"
-               data-i18n-html="1">
-          </div>
+        <div class="info-bubble"
+             id="bubbleWeekLock"
+             data-i18n="week_lock_info"
+             data-i18n-html="1">
         </div>
-
       </div>
     </div>
 
@@ -1089,6 +1098,7 @@ margin-bottom: 16px;
     </div>
 
     <div class="list" id="historyList"></div>
+
   </div>
 </div>
 
