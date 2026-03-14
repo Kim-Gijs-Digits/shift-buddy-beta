@@ -5622,6 +5622,11 @@ document.getElementById("btnLangIt")?.addEventListener("click", () => openSetupA
 
 
 init();
+
+if (window.ShiftTapNotifications) {
+  ShiftTapNotifications.init();
+}
+
 });
 })();
 </script>
@@ -5677,6 +5682,7 @@ init();
 <!-- libs for PDF export -->
 <script src="jspdf.umd.min.js"></script>
 <script src="pdf-export.js"></script>
+<script src="notifications.js"></script>
 
 <button id="btnTestSetup" style="display:none; position:fixed; bottom:10px; right:10px; z-index:9999;">
   TEST Setup Done
