@@ -3542,6 +3542,9 @@ function scheduleCloudPush(){
   function saveState(){ 
   localStorage.setItem(STORE_KEY, JSON.stringify(state)); 
 }
+window.state = state;
+window.saveState = saveState;
+
   function saveMeta(){ localStorage.setItem(META_KEY, JSON.stringify(meta)); }
 
   /* =========================
