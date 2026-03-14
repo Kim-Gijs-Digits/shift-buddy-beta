@@ -5631,9 +5631,31 @@ document.getElementById("btnLangIt")?.addEventListener("click", () => openSetupA
 
 // checkMissingTranslations();
 
+// Notification settings opslaan
+function saveNotifSettings(settings) {
+  localStorage.setItem("ShiftTapNotifSettings", JSON.stringify(settings));
+}
+
+// Notification settings laden
+function loadNotifSettings() {
+  const saved = localStorage.getItem("ShiftTapNotifSettings");
+  if (saved) {
+    try {
+      return JSON.parse(saved);
+    } catch {
+      return null;
+    }
+  }
+  return null;
+}
+
 init();
 
 if (window.ShiftTapNotifications) {
+
+  const saved = loadNotifSettings();
+  if (saved) ShiftTapNotifications.setSettings(saved);
+
   ShiftTapNotifications.init();
 
   const chkNotif = document.getElementById("chkNotifEnabled");
@@ -5644,7 +5666,10 @@ if (window.ShiftTapNotifications) {
     chkNotif.addEventListener("change", () => {
       const next = ShiftTapNotifications.getSettings();
       next.enabled = chkNotif.checked;
+
       ShiftTapNotifications.setSettings(next);
+      saveNotifSettings(next);
+
       console.log("Notificaties staan nu:", chkNotif.checked);
     });
   }
