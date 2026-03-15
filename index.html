@@ -5652,40 +5652,38 @@ function loadNotifSettings() {
   }
   return null;
 }
+<script>
+(() => {
+  init();
 
-init();
+  if (window.ShiftTapNotifications) {
+    const saved = loadNotifSettings();
+    if (saved) ShiftTapNotifications.setSettings(saved);
 
-if (window.ShiftTapNotifications) {
+    ShiftTapNotifications.init();
 
-  const saved = loadNotifSettings();
-  if (saved) ShiftTapNotifications.setSettings(saved);
+    const chkNotif = document.getElementById("chkNotifEnabled");
 
-  ShiftTapNotifications.init();
+    if (chkNotif) {
+      chkNotif.checked = ShiftTapNotifications.getSettings().enabled;
 
-  const chkNotif = document.getElementById("chkNotifEnabled");
+      chkNotif.addEventListener("change", () => {
+        const next = ShiftTapNotifications.getSettings();
+        next.enabled = chkNotif.checked;
 
-if (chkNotif) {
-  chkNotif.checked = ShiftTapNotifications.getSettings().enabled;
+        ShiftTapNotifications.setSettings(next);
+        saveNotifSettings(next);
 
-  chkNotif.addEventListener("change", () => {
-    const next = ShiftTapNotifications.getSettings();
-    next.enabled = chkNotif.checked;
+        console.log("Notificaties staan nu:", chkNotif.checked);
 
-    ShiftTapNotifications.setSettings(next);
-    saveNotifSettings(next);
-
-    console.log("Notificaties staan nu:", chkNotif.checked);
-
-    if (chkNotif.checked && window.ShiftTapNotifications?.init) {
-      window.ShiftTapNotifications.init();
+        if (chkNotif.checked && window.ShiftTapNotifications?.init) {
+          window.ShiftTapNotifications.init();
+        }
+      });
     }
-
-
-}
-}
+  }
 })();
 </script>
-
 
 <!-- ===== PDF EXPORT DIALOG ===== -->
 
