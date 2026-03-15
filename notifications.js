@@ -203,6 +203,8 @@ async function saveMessagingToken(token) {
       return;
     }
 
+    await navigator.serviceWorker.ready;
+    
     const token = await getMessagingToken(swRegistration);
     if (!token) {
       console.warn("Geen messaging token beschikbaar.");
