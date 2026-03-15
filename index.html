@@ -1788,6 +1788,10 @@ async function ensureFirebase(){
   fbAuth = firebase.auth();
   fbDb = firebase.firestore();
 
+  window.fbApp = fbApp;
+  window.fbAuth = fbAuth;
+  window.fbDb = fbDb;
+
   await fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
   return true;
 }
