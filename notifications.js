@@ -181,6 +181,8 @@ async function saveMessagingToken(token) {
     await window.ensureFirebase();
   }
 
+  await new Promise(r => setTimeout(r, 500));
+  
   initFirebaseMessaging();
 
   const settings = getNotifSettings();
@@ -204,7 +206,7 @@ async function saveMessagingToken(token) {
     }
 
     await navigator.serviceWorker.ready;
-    
+
     const token = await getMessagingToken(swRegistration);
     if (!token) {
       console.warn("Geen messaging token beschikbaar.");
